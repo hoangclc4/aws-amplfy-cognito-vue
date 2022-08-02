@@ -26,12 +26,10 @@
 <script>
 import { Auth } from "aws-amplify";
 import { API, graphqlOperation } from "aws-amplify";
-import { listRestaurants } from "./graphql/queries";
+import { listRestaurants, posts } from "./graphql/queries";
 import { createRestaurant } from "./graphql/mutations";
 
-import {
-  Predictions,
-} from '@aws-amplify/predictions';
+import { Predictions } from "@aws-amplify/predictions";
 export default {
   name: "App",
   data() {
@@ -44,20 +42,29 @@ export default {
   },
   async created() {
     this.currentUser();
-    const response = await API.graphql(graphqlOperation(listRestaurants));
+    let response = await API.graphql(
+      graphqlOperation(listRestaurants, { limit: 2 })
+    );
+    console.log("1", response.data.listRestaurants);
+    response = await API.graphql({
+      query: posts,
+      authMode: "AMAZON_COGNITO_USER_POOLS",
+    });
+    console.log("2", response.data);
+
     this.restaurants = response.data.listRestaurants.items;
     this.clientId = "12d1ff7";
 
     Predictions.convert({
       translateText: {
         source: {
-          text: 'My taylor is rich!',
-          language: 'en',
+          text: "My taylor is rich!",
+          language: "en",
         },
-        targetLanguage: 'vi',
+        targetLanguage: "vi",
       },
     }).then(({ text }) => {
-      console.log('Predictions', text);
+      console.log("Predictions", text);
     });
 
     // Predictions.convert({

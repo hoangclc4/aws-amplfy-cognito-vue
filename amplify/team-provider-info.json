@@ -15,6 +15,12 @@
       "auth": {
         "awsamplifycognito95952029": {},
         "true": {}
+      },
+      "function": {
+        "GraphQLResolverFunction": {
+          "deploymentBucketName": "amplify-awsamplifycognito-dev-170614-deployment",
+          "s3Key": "amplify-builds/GraphQLResolverFunction-4d5361686b694a634f4e-build.zip"
+        }
       }
     }
   }

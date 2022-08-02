@@ -11,7 +11,7 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "api": {
-        "awsamplifycognito": {
+        "graphql": {
             "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
@@ -22,6 +22,14 @@ export type AmplifyDependentResourcesAttributes = {
             "region": "string",
             "sourceLang": "string",
             "targetLang": "string"
+        }
+    },
+    "function": {
+        "GraphQLResolverFunction": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
         }
     }
 }
